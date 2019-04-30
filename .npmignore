@@ -5,3 +5,4 @@ media/
 test/
 .vscode/
 tsconfig.json
+src/

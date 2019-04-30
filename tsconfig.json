@@ -4,11 +4,14 @@
     "module": "commonjs",
     "noImplicitAny": false,
     "removeComments": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "outDir": "./dist/",
     "jsx": "react",
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./src/lib/emoji-list.json"
   ],
   "exclude": [
     "node_modules",
