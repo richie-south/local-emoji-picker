@@ -1,0 +1,7 @@
+example/
+media/
+.eslintrc.json
+.eslintignore
+test/
+.vscode/
+tsconfig.json

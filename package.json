@@ -1,0 +1,34 @@
+{
+  "name": "local-emoji-picker",
+  "version": "0.0.1",
+  "description": "emoji picker for local emojis",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "npx typescript --declaration"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richie-south/local-emoji-picker.git"
+  },
+  "author": "richard soderman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richie-south/local-emoji-picker/issues"
+  },
+  "homepage": "https://github.com/richie-south/local-emoji-picker#readme",
+  "devDependencies": {
+    "@types/react": "^16.8.15",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "typescript": "^3.4.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  }
+}
