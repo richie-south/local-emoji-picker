@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const childProcess = require('child_process')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   mode: 'production',
@@ -48,5 +49,6 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: '[name].css'
     }),
+    /* new BundleAnalyzerPlugin() */
   ]
 }
