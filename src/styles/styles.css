@@ -10,6 +10,15 @@
   border-radius: 6px;
   border: 1px solid #d7d7d7;
   overflow: hidden;
+
+  -webkit-animation-name: fadeUp;
+  animation-name: fadeUp;
+  -webkit-animation-duration: .25s;
+  animation-duration: .25;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 .local-emoji-picker .search {
