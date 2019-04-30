@@ -3,28 +3,47 @@ import * as React from 'react'
 import { EmojiData } from './types'
 import { Category } from './lib/categories'
 
-const Emoji = ({
-  data,
-  onClick
-}: {
+type EmojiProps = {
   data: EmojiData,
   onClick: (value: EmojiData) => void
-}) => (
+}
+
+const Emoji = React.memo(({
+  data,
+  onClick
+}: EmojiProps) => (
   <div
     className='emoji-item'
     onClick={() => onClick(data)}
   >
     {data.v}
   </div>
-)
+), (prevProps: EmojiProps, nextProps: EmojiProps) => {
 
-const EmojiRow = ({ children }) => (
+  if (prevProps.data.v === nextProps.data.v) {
+    return true
+  }
+
+  return false
+})
+
+const EmojiRow = React.memo(({ children }: { children: React.ReactNode }) => (
   <div
     className='emoji-row'
   >
     {children}
   </div>
-)
+), (prevProps, nextProps)  => {
+
+  const oldKeys = (prevProps.children as any).map((child) => child.key);
+  const newKeys = (nextProps.children as any).map((child) => child.key);
+
+  if (oldKeys.join('') === newKeys.join('')) {
+    return true
+  }
+
+  return false
+})
 
 type Props = {
   category: Category,
