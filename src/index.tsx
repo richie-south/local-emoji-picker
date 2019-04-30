@@ -9,7 +9,7 @@ import { searchEmojis } from './lib/search'
 import { toFriendlyEmojiData } from './lib/converter'
 import debounce from 'lodash.debounce'
 
-import './styles/styles.scss'
+import './styles/styles.css'
 
 type Props = {
   placeHolderSearchText?: string
