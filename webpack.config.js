@@ -3,15 +3,16 @@ const path = require('path')
 const childProcess = require('child_process')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   mode: 'production',
-  entry: {
-    client: './src/index.tsx'
-  },
+  entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
-    filename: 'emoji-list.[hash].js',
-    path: path.join(__dirname, '/dist')
+    path: path.join(__dirname, '/dist'),
+    filename: 'index.js',
+    library: '',
+    libraryTarget: 'commonjs',
   },
 
   // Enable sourcemaps for debugging webpack's output.
@@ -21,6 +22,7 @@ module.exports = {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
+  externals: [nodeExternals()],
 
   module: {
     rules: [
@@ -49,6 +51,6 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: '[name].css'
     }),
-    /* new BundleAnalyzerPlugin() */
+    new BundleAnalyzerPlugin()
   ]
 }
