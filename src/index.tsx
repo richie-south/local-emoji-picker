@@ -3,16 +3,19 @@ import * as React from 'react'
 import { EmojiData, FriendlyEmojiData } from './types'
 import { emojiList } from './lib/emoji-list'
 import { EmojiCategory } from './emoji-category'
-import { categories } from './lib/categories'
+import { categories, Category } from './lib/categories'
 import { makeRows } from './lib/make-rows'
 import { searchEmojis } from './lib/search'
 import { toFriendlyEmojiData } from './lib/converter'
 import debounce from 'lodash.debounce'
 
 import './styles/styles.css'
+import { CategorySelector } from './category-selector';
 
 type Props = {
   placeHolderSearchText?: string
+  search?: boolean
+  categorySelector?: boolean
   onClick: (value: FriendlyEmojiData) => void
 }
 
@@ -24,6 +27,10 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
 
   state: State = {
     searchString: ''
+  }
+
+  static defaultProps = {
+    search: true
   }
 
   setSeachValue = debounce((searchString) => {
@@ -53,6 +60,10 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
   }
 
   renderSearch () {
+    if (!this.props.search) {
+      return false
+    }
+
     return (
       <div
         className='search'
@@ -79,7 +90,12 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
     const list = this.doSearch(this.state.searchString.trim())
 
     return (
-      <div className='categories'>
+      <div
+        className='categories'
+        style={{
+          height: `calc(100% - ${this.getHeight()}px)`
+        }}
+      >
         {categories.map((category) => {
           if (!Array.isArray(list[category.category])) {
             return null
@@ -98,10 +114,42 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
     )
   }
 
+  onCategoryClick = (category: Category) => {
+    const element = document.getElementById(category.category)
+    element.scrollIntoView()
+  }
+
+  renderCategorySelector () {
+    if (!this.props.categorySelector) {
+      return null
+    }
+
+    return (
+      <CategorySelector
+        onClick={this.onCategoryClick}
+      />
+    )
+  }
+
+  getHeight () {
+    if (this.props.search && this.props.categorySelector) {
+      return 78
+    }
+
+    if (this.props.categorySelector || this.props.search) {
+      return 40
+    }
+
+    return 0
+  }
+
   render () {
     return (
       <div className='local-emoji-picker'>
-        {this.renderSearch()}
+        <div className='controls'>
+          {this.renderCategorySelector()}
+          {this.renderSearch()}
+        </div>
         {this.renderCategories()}
 
       </div>
