@@ -1,6 +1,6 @@
 .local-emoji-picker {
   background-color: white;
-  position: absolute;
+  /* position: absolute; */
   bottom: 64px;
   height: 204px;
   width: 300px;
@@ -8,13 +8,15 @@
   box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.12);
   max-height: 300px;
   border-radius: 6px;
-  border: 1px solid #d7d7d7;
+  border: 1px solid #efefef;
   overflow: hidden;
 }
 
+.local-emoji-picker .controls {
+  box-shadow: 0 0px 7px 1px rgba(0, 0, 0, 0.12);
+}
+
 .local-emoji-picker .search {
-  margin-top: 12px;
-  border-bottom: 1px solid #d7d7d7;
   padding-bottom: 6px;
 }
 
@@ -28,7 +30,7 @@
 
 .local-emoji-picker .categories {
   overflow-y: scroll;
-  height: calc(100% - 36px); /* height of search bar */
+
   width: 100%;
 }
 
@@ -57,3 +59,27 @@
 .local-emoji-picker .categories .emoji-section .emoji-row .emoji-item:hover {
   transform: scale(1.2);
 }
+
+.local-emoji-picker .category-section {
+}
+
+.local-emoji-picker .category-section .categories-list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.local-emoji-picker .category-section .categories-list .category {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 24px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.local-emoji-picker .category-section .categories-list .category:hover {
+  background-color: #efefef;
+}
+
