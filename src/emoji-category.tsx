@@ -57,7 +57,7 @@ export const EmojiCategory = ({
   onClick
 }: Props) => {
   return (
-    <div className='emoji-section'>
+    <div className='emoji-section' id={category.category}>
       <div className='emoji-section-title'>
         <p>{category.category}</p>
       </div>
