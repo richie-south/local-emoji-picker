@@ -117,7 +117,9 @@ export class Picker extends React.Component<Props, State> {
 
   onCategoryClick = (category: Category) => {
     const element = document.getElementById(`${this.props.idPrefix}${category.category}`)
-    element.scrollIntoView()
+    if (element) {
+      element.scrollIntoView()
+    }
   }
 
   renderCategorySelector () {
