@@ -2,7 +2,7 @@
 
 emoji picker for local emojis
 
-## [live example](local-emoji-picker.richardsoderman.se)
+## [live example](https://local-emoji-picker.richardsoderman.se/)
 
 **props**
 - categorySelector: boolean
