@@ -1,21 +1,22 @@
 import * as React from 'react'
+import debounce from 'lodash.debounce'
 
 import { EmojiData, FriendlyEmojiData } from './types'
 import { emojiList } from './lib/emoji-list'
-import { EmojiCategory } from './emoji-category'
+import { EmojiCategorySection } from './emoji-category-section'
 import { categories, Category } from './lib/categories'
 import { makeRows } from './lib/make-rows'
 import { searchEmojis } from './lib/search'
 import { toFriendlyEmojiData } from './lib/converter'
-import debounce from 'lodash.debounce'
+import { CategorySelector } from './category-selector'
 
 import './styles/styles.css'
-import { CategorySelector } from './category-selector';
 
 type Props = {
   placeHolderSearchText?: string
   search?: boolean
   categorySelector?: boolean
+  idPrefix?: string
   onClick: (value: FriendlyEmojiData) => void
 }
 
@@ -30,7 +31,8 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-    search: true
+    search: true,
+    idPrefix: ''
   }
 
   setSeachValue = debounce((searchString) => {
@@ -102,10 +104,11 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
           }
 
           return (
-            <EmojiCategory
+            <EmojiCategorySection
               key={category.category}
               category={category}
               list={makeRows(list[category.category])}
+              idPrefix={this.props.idPrefix}
               onClick={this.onClick}
             />
           )
@@ -115,7 +118,7 @@ export class LocalEmojiPicker extends React.Component<Props, State> {
   }
 
   onCategoryClick = (category: Category) => {
-    const element = document.getElementById(category.category)
+    const element = document.getElementById(`${this.props.idPrefix}${category.category}`)
     element.scrollIntoView()
   }
 
