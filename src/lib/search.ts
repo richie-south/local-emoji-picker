@@ -12,7 +12,7 @@ const escape = (str: string) => {
   return str.replace(matchOperatorsRegex, '\\$&')
 }
 
-export function searchEmojis (term: string): EmojiList {
+export const searchEmojis = (term: string): EmojiList => {
   if (!term || typeof term !== 'string') {
     return {}
   }
@@ -24,6 +24,12 @@ export function searchEmojis (term: string): EmojiList {
 
   return categories.map((category: Category) => {
     const categoryList: Array<EmojiData> = emojiList[category.category]
+    if (!categoryList) {
+      return {
+        emojis: [],
+        category
+      }
+    }
 
     const emojis = categoryList.filter(emojiMatchesSearchTerm)
 
