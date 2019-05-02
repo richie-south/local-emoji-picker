@@ -10,7 +10,7 @@ import { searchEmojis } from '../../lib/search'
 import { toFriendlyEmojiData } from '../../lib/converter'
 import { CategorySelector } from '../category-selector/category-selector'
 import { Search } from '../search/search'
-import { addToFrequentlyUsed, getFrequentlyUsed } from '../../lib/frequently-used'
+import { addToFrequentlyUsed, getFrequentlyUsed, FREQUENTLY_USED } from '../../lib/frequently-used'
 
 import './picker-styles.scss'
 
@@ -24,13 +24,15 @@ type Props = {
 
 type State = {
   searchString: string
+  frequentlyUsed: Array<EmojiData>
 }
 
 export class Picker extends React.Component<Props, State> {
   emojiList = emojiList
 
   state: State = {
-    searchString: ''
+    searchString: '',
+    frequentlyUsed: getFrequentlyUsed()
   }
 
   static defaultProps = {
@@ -38,18 +40,18 @@ export class Picker extends React.Component<Props, State> {
     idPrefix: ''
   }
 
-  setSeachValue = debounce((searchString) => {
+  setSeachValue = debounce((searchString: string) => {
     this.setState({
       searchString
     })
   }, 50)
 
-  componentDidMount() {
-    this.emojiList['frequently used'] = getFrequentlyUsed()
-  }
-
   shouldComponentUpdate (_, nextState: State) {
     if (nextState.searchString !== this.state.searchString) {
+      return true
+    }
+
+    if (nextState.frequentlyUsed.length !== this.state.frequentlyUsed.length) {
       return true
     }
 
@@ -82,12 +84,15 @@ export class Picker extends React.Component<Props, State> {
   }
 
   onEmojiClick = (data: EmojiData) => {
-    this.emojiList['frequently used'] = addToFrequentlyUsed(data)
+    this.setState({
+      frequentlyUsed: addToFrequentlyUsed(data)
+    })
     this.props.onClick(toFriendlyEmojiData(data))
   }
 
   renderCategories () {
     const list = this.doSearch(this.state.searchString.trim())
+    list[FREQUENTLY_USED] = this.state.frequentlyUsed
 
     return (
       <div
