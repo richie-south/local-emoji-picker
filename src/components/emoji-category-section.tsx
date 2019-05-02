@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { EmojiData } from './types'
-import { Category } from './lib/categories'
+import { EmojiData } from '../types'
+import { Category } from '../lib/categories'
 import { EmojiRow } from './emoji-row'
 import { Emoji } from './emoji'
 

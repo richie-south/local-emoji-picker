@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { EmojiData } from './types'
-import { Category, categories } from './lib/categories'
+import { Category, categories } from '../lib/categories'
 
 const Categories = ({ onClick }: {
   onClick: (value: Category) => void

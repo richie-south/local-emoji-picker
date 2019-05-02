@@ -3,12 +3,12 @@ import debounce from 'lodash.debounce'
 
 import { EmojiData, FriendlyEmojiData } from './types'
 import { emojiList } from './lib/emoji-list'
-import { EmojiCategorySection } from './emoji-category-section'
+import { EmojiCategorySection } from './components/emoji-category-section'
 import { categories, Category } from './lib/categories'
 import { makeRows } from './lib/make-rows'
 import { searchEmojis } from './lib/search'
 import { toFriendlyEmojiData } from './lib/converter'
-import { CategorySelector } from './category-selector'
+import { CategorySelector } from './components/category-selector'
 
 import './styles/styles.css'
 
