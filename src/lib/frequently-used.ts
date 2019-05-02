@@ -2,12 +2,14 @@ import store from 'store'
 
 import { EmojiData } from '../types'
 
+export const FREQUENTLY_USED = 'frequently used'
+
 type EmojiDataWithUsedNr = {
   used: number
 } & EmojiData
 
 export const addToFrequentlyUsed = (emojiData: EmojiData): Array<EmojiDataWithUsedNr> => {
-  const currentFrequentlyUsed: Array<EmojiDataWithUsedNr> = store.get('local-emoji-frequently-used') || []
+  const currentFrequentlyUsed: Array<EmojiDataWithUsedNr> = store.get('local-emoji-frequently-used', [])
 
   let index
   const hasValue = currentFrequentlyUsed
@@ -44,6 +46,6 @@ export const addToFrequentlyUsed = (emojiData: EmojiData): Array<EmojiDataWithUs
 }
 
 export const getFrequentlyUsed = () => {
-  const currentFrequentlyUsed: Array<EmojiDataWithUsedNr> = store.get('local-emoji-frequently-used') || []
+  const currentFrequentlyUsed: Array<EmojiDataWithUsedNr> = store.get('local-emoji-frequently-used' , [])
   return currentFrequentlyUsed
 }
