@@ -8,10 +8,10 @@ export type EmojiData = {
 }
 
 export type FriendlyEmojiData = {
-  value: string
-  name: string
-  keywords: Array<string>
-  category: string
-  unicode: string
-  unicodeAlt: Array<string>
+  value: EmojiData['v']
+  name: EmojiData['n']
+  keywords: EmojiData['k']
+  category: EmojiData['c']
+  unicode: EmojiData['uc']
+  unicodeAlt: EmojiData['uca']
 }
