@@ -49,6 +49,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "^4.0.8",
+    "store": "^2.0.12"
   }
 }
