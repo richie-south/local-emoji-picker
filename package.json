@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build:prod": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "build:site": "NODE_ENV=production ./node_modules/.bin/webpack --config webpack.site.config.js",
     "dev": "npx webpack-dev-server --config webpack.development.config.js --port 3000 --open"
   },
   "keywords": [
