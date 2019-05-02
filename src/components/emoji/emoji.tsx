@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { EmojiData } from '../types'
+import { EmojiData } from '../../types'
 
 type Props = {
   data: EmojiData,
