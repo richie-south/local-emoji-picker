@@ -9,8 +9,9 @@ import { makeRows } from '../../lib/make-rows'
 import { searchEmojis } from '../../lib/search'
 import { toFriendlyEmojiData } from '../../lib/converter'
 import { CategorySelector } from '../category-selector/category-selector'
+import { Search } from '../search/search'
 
-import './styles/styles.css'
+import './picker-styles.scss'
 
 type Props = {
   placeHolderSearchText?: string
@@ -67,20 +68,10 @@ export class Picker extends React.Component<Props, State> {
     }
 
     return (
-      <div
-        className='search'
-      >
-        <input
-          className='search-input'
-          type='search'
-          placeholder={this.props.placeHolderSearchText
-            ? this.props.placeHolderSearchText
-            : 'Search'
-          }
-          autoFocus
-          onChange={this.onSearchChange}
-        />
-      </div>
+      <Search
+        placeHolderText={this.props.placeHolderSearchText}
+        onChange={this.onSearchChange}
+      />
     )
   }
 

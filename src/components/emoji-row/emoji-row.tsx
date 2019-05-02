@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import './emoji-row-styles.scss'
+
 type Props = {
   children: React.ReactNode
 }

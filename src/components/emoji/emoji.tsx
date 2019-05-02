@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { EmojiData } from '../../types'
 
+import './emoji-styles.scss'
+
 type Props = {
   data: EmojiData,
   onClick: (value: EmojiData) => void

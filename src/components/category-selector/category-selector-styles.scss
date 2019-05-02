@@ -1,0 +1,22 @@
+
+.local-emoji-picker {
+  .categories-list {
+    display: flex;
+    justify-content: space-evenly;
+
+    .category {
+      flex: 1;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      height: 40px;
+      font-size: 24px;
+      background-color: #f9f9f9;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+  }
+}

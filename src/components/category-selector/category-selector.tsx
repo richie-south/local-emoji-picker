@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { Category, categories } from '../../lib/categories'
 
+import './category-selector-styles.scss'
+
 const Categories = ({ onClick }: {
   onClick: (value: Category) => void
 }) => {

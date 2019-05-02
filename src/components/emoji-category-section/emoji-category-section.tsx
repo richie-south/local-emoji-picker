@@ -5,6 +5,8 @@ import { Category } from '../../lib/categories'
 import { EmojiRow } from '../emoji-row/emoji-row'
 import { Emoji } from '../emoji/emoji'
 
+import './emoji-category-section-styles.scss'
+
 type Props = {
   category: Category,
   list: Array<Array<EmojiData>>
