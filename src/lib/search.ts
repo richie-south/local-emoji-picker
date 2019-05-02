@@ -1,4 +1,4 @@
-import { emojiList, EmojiList } from './emoji-list'
+import { /* emojiList, */ EmojiList } from './emoji-list'
 import { categories, Category } from './categories'
 import { EmojiData } from '../types'
 
@@ -12,7 +12,7 @@ const escape = (str: string) => {
   return str.replace(matchOperatorsRegex, '\\$&')
 }
 
-export const searchEmojis = (term: string): EmojiList => {
+export const searchEmojis = (term: string, list: EmojiList): EmojiList => {
   if (!term || typeof term !== 'string') {
     return {}
   }
@@ -23,7 +23,7 @@ export const searchEmojis = (term: string): EmojiList => {
     emoji.k.concat(emoji.n).some(keywordMatchesSearchTerm)
 
   return categories.map((category: Category) => {
-    const categoryList: Array<EmojiData> = emojiList[category.category]
+    const categoryList: Array<EmojiData> = list[category.category]
     if (!categoryList) {
       return {
         emojis: [],
