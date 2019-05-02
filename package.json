@@ -1,6 +1,6 @@
 {
   "name": "local-emoji-picker",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "emoji picker for local emojis",
   "main": "./dist/index.js",
   "scripts": {
@@ -47,8 +47,8 @@
     "webpack-node-externals": "^1.7.2"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
