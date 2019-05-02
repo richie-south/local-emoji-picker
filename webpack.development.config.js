@@ -2,27 +2,35 @@ const webpack = require('webpack')
 const path = require('path')
 const childProcess = require('child_process')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const FixDefaultImportPlugin = require('webpack-fix-default-import-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-  mode: 'production',
-  entry: path.resolve(__dirname, 'src/index.tsx'),
+  mode: 'development',
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:3000',
+      './preview/preview.tsx',
+    ]
+  },
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'index.js',
-    library: '',
-    libraryTarget: 'commonjs',
+    filename: 'bundle.js',
+    pathinfo: false,
+    path: path.join(__dirname, '/dist')
   },
 
   // Enable sourcemaps for debugging webpack's output.
-  devtool: 'source-map',
+  devtool: 'eval',
+
+  devServer: {
+    port: 3000
+  },
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
-  externals: [nodeExternals()],
 
   module: {
     rules: [
@@ -37,7 +45,6 @@ module.exports = {
           }
         ]
       },
-
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -52,6 +59,9 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: '[name].css'
     }),
-    new BundleAnalyzerPlugin()
+    new FixDefaultImportPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'preview/index.html',
+    }),
   ]
 }

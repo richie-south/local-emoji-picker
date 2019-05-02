@@ -1,0 +1,20 @@
+
+.local-emoji-picker {
+  background-color: white;
+  height: 204px;
+  width: 300px;
+  box-shadow: 0 1px 15px 1px rgba(0, 0, 0, 0.12);
+  max-height: 300px;
+  border-radius: 6px;
+  border: 1px solid #efefef;
+  overflow: hidden;
+
+  .controls {
+    box-shadow: 0 0px 7px 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .categories {
+    overflow-y: scroll;
+    width: 100%;
+  }
+}

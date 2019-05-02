@@ -1,44 +1,27 @@
 import * as React from 'react'
 
-import { EmojiData } from './types'
-import { Category } from './lib/categories'
+import { EmojiData } from '../../types'
+import { Category } from '../../lib/categories'
+import { EmojiRow } from '../emoji-row/emoji-row'
+import { Emoji } from '../emoji/emoji'
 
-const Emoji = ({
-  data,
-  onClick
-}: {
-  data: EmojiData,
-  onClick: (value: EmojiData) => void
-}) => (
-  <div
-    className='emoji-item'
-    onClick={() => onClick(data)}
-  >
-    {data.v}
-  </div>
-)
-
-const EmojiRow = ({ children }) => (
-  <div
-    className='emoji-row'
-  >
-    {children}
-  </div>
-)
+import './emoji-category-section-styles.scss'
 
 type Props = {
   category: Category,
   list: Array<Array<EmojiData>>
+  idPrefix?: string
   onClick: (value: EmojiData) => void
 }
 
-export const EmojiCategory = ({
+export const EmojiCategorySection = ({
   category,
   list,
+  idPrefix = '',
   onClick
 }: Props) => {
   return (
-    <div className='emoji-section'>
+    <div className='emoji-section' id={`${idPrefix}${category.category}`}>
       <div className='emoji-section-title'>
         <p>{category.category}</p>
       </div>

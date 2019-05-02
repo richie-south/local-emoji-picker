@@ -1,0 +1,13 @@
+
+.local-emoji-picker {
+  .emoji-item {
+    cursor: pointer;
+    font-size: 26px;
+    min-width: 33px;
+    transition: all .2s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

@@ -6,35 +6,39 @@ export type Category = {
 
 export const categories: Array<Category> = [
   {
+    category: 'frequently used',
+    symbol: '🕒'
+  },
+  {
     category: 'people',
-    symbol: ''
+    symbol: '😄'
   },
   {
     category: 'nature',
-    symbol: ''
+    symbol: '😺'
   },
   {
     category: 'food',
-    symbol: ''
+    symbol: '🍕'
   },
   {
     category: 'activity',
-    symbol: ''
+    symbol: '⚽️'
   },
   {
     category: 'travel',
-    symbol: ''
+    symbol: '🌎'
   },
   {
     category: 'objects',
-    symbol: ''
+    symbol: '💡'
   },
   {
     category: 'symbols',
-    symbol: ''
+    symbol: '💕'
   },
   {
     category: 'flags',
-    symbol: ''
+    symbol: '🇸🇪'
   }
 ]
