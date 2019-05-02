@@ -10,6 +10,7 @@ import { searchEmojis } from '../../lib/search'
 import { toFriendlyEmojiData } from '../../lib/converter'
 import { CategorySelector } from '../category-selector/category-selector'
 import { Search } from '../search/search'
+import { addToFrequentlyUsed, getFrequentlyUsed } from '../../lib/frequently-used'
 
 import './picker-styles.scss'
 
@@ -26,6 +27,7 @@ type State = {
 }
 
 export class Picker extends React.Component<Props, State> {
+  emojiList = emojiList
 
   state: State = {
     searchString: ''
@@ -42,6 +44,10 @@ export class Picker extends React.Component<Props, State> {
     })
   }, 50)
 
+  componentDidMount() {
+    this.emojiList['frequently used'] = getFrequentlyUsed()
+  }
+
   shouldComponentUpdate (_, nextState: State) {
     if (nextState.searchString !== this.state.searchString) {
       return true
@@ -52,7 +58,7 @@ export class Picker extends React.Component<Props, State> {
 
   doSearch = (value: string) => {
     if (value === '') {
-      return emojiList
+      return this.emojiList
     }
 
     return searchEmojis(value)
@@ -75,7 +81,8 @@ export class Picker extends React.Component<Props, State> {
     )
   }
 
-  onClick = (data: EmojiData) => {
+  onEmojiClick = (data: EmojiData) => {
+    this.emojiList['frequently used'] = addToFrequentlyUsed(data)
     this.props.onClick(toFriendlyEmojiData(data))
   }
 
@@ -100,7 +107,7 @@ export class Picker extends React.Component<Props, State> {
               category={category}
               list={makeRows(list[category.category])}
               idPrefix={this.props.idPrefix}
-              onClick={this.onClick}
+              onClick={this.onEmojiClick}
             />
           )
         })}
