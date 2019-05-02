@@ -28,7 +28,6 @@ type State = {
 }
 
 export class Picker extends React.Component<Props, State> {
-  emojiList = emojiList
 
   state: State = {
     searchString: '',
@@ -60,10 +59,16 @@ export class Picker extends React.Component<Props, State> {
 
   doSearch = (value: string) => {
     if (value === '') {
-      return this.emojiList
+      return {
+        ...emojiList,
+        [FREQUENTLY_USED]: this.state.frequentlyUsed
+      }
     }
 
-    return searchEmojis(value)
+    return searchEmojis(value, {
+      ...emojiList,
+      [FREQUENTLY_USED]: this.state.frequentlyUsed
+    })
   }
 
   onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,7 +97,6 @@ export class Picker extends React.Component<Props, State> {
 
   renderCategories () {
     const list = this.doSearch(this.state.searchString.trim())
-    list[FREQUENTLY_USED] = this.state.frequentlyUsed
 
     return (
       <div
@@ -102,7 +106,7 @@ export class Picker extends React.Component<Props, State> {
         }}
       >
         {categories.map((category) => {
-          if (!Array.isArray(list[category.category])) {
+          if (!Array.isArray(list[category.category]) || list[category.category].length === 0) {
             return null
           }
 
