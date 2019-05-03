@@ -34,10 +34,9 @@ export const stringToEmoji = (value: string) => {
   }
 
   const trimedLowerCaseValue = value.trim()
-  const hasMatch = asciiMatch[trimedLowerCaseValue]
-  if (hasMatch) {
-    return hasMatch.match
-  }
+  const match = asciiMatch[trimedLowerCaseValue]
 
-  return value
+  return match
+    ? match
+    : value
 }
