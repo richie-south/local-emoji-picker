@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const childProcess = require('child_process')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const FixDefaultImportPlugin = require('webpack-fix-default-import-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -62,7 +63,11 @@ module.exports = {
     }),
     new FixDefaultImportPlugin(),
     new HtmlWebpackPlugin({
+      inject: 'head',
       template: 'preview/index.html',
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     }),
   ]
 }
