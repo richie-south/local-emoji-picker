@@ -15,6 +15,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     pathinfo: false,
+    chunkFilename: 'chunk-[name].[contenthash].js',
     filename: 'bundle.js',
   },
 
@@ -49,6 +50,11 @@ module.exports = {
         ]
       },
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
   },
   plugins: [
     new MiniCSSExtractPlugin({
