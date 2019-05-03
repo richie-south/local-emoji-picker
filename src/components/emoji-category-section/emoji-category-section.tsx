@@ -28,14 +28,14 @@ export const EmojiCategorySection = ({
       {list.map((row) => {
         const emojis = row.map((emoji) => (
           <Emoji
-            key={`${emoji.uc}-${emoji.uca.join('-')}`}
+            key={`${emoji.v}-${emoji.k.join('-')}`}
             data={emoji}
             onClick={onClick}
           />
         ))
         return (
           <EmojiRow
-            key={`${row[0].uc}-${row[0].uca.join('-')}-row`}
+            key={`${row[0].v}-${row[0].k.join('-')}-row`}
           >
             {emojis}
           </EmojiRow>
