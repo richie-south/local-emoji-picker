@@ -20,7 +20,7 @@ export const searchEmojis = (term: string, list: EmojiList): EmojiList => {
   const searchTermRegExp = new RegExp(`^(?:.* +)*${escape(term)}`, 'i')
   const keywordMatchesSearchTerm = (keywords: string) => searchTermRegExp.test(keywords)
   const emojiMatchesSearchTerm = (emoji: EmojiData) =>
-    emoji.k.concat(emoji.n).some(keywordMatchesSearchTerm)
+    emoji.k.some(keywordMatchesSearchTerm)
 
   return categories.map((category: Category) => {
     const categoryList: Array<EmojiData> = list[category.category]
