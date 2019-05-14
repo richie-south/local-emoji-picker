@@ -8,8 +8,13 @@ emoji picker for local emojis
 - categorySelector: boolean
   - default: false
 - search: boolean
-  - default: true
-- onClick: function
+  - default: false
+- frequentlyUsed: boolean
+  - default: false
+- categories: categories
+  - default: preset, example { category: 'people', symbol: '😄' }
+- onClick: function(data)
+  - data: { value: string, keywords: Array<string> }
 - idPrefix: string
   - default: ''
 
@@ -20,35 +25,54 @@ emoji picker for local emojis
     console.log(data) /*
     {
       value: '',
-      name: '',
       keywords: ['', ...],
-      category: ',
-      unicode: '',
-      unicodeAlt: ['', ...]
     }
     */
   }
 
   <LocalEmojiPicker
     categorySelector
+    search
+    frequentlyUsed
     onClick={onClick}
   />
 
 // only search
   <LocalEmojiPicker
+    search
     onClick={onClick}
   />
 
 // only category selector
   <LocalEmojiPicker
     categorySelector
-    search={false}
     onClick={onClick}
   />
 
+// custom category selector
+  <LocalEmojiPicker
+    categorySelector
+    categories={[
+      {
+        category: 'symbols',
+        symbol: '💕'
+      },
+      {
+        category: 'flags',
+        symbol: '🇸🇪'
+      }
+    ]}
+    onClick={onClick}
+  />,
+
+// only frequently used
+  <LocalEmojiPicker
+    frequentlyUsed
+    onClick={onClick}
+  />,
+
 // none
   <LocalEmojiPicker
-    search={false}
     onClick={onClick}
   />,
 ```
