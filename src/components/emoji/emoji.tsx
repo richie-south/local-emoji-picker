@@ -9,7 +9,7 @@ type Props = {
   onClick: (value: EmojiData) => void
 }
 
-export const Emoji = /* React.memo( */({
+export const Emoji = React.memo(({
   data,
   onClick
 }: Props) => (
@@ -19,11 +19,11 @@ export const Emoji = /* React.memo( */({
   >
     {data.v}
   </div>
-)/* , (prevProps: Props, nextProps: Props) => {
+), (prevProps: Props, nextProps: Props) => {
 
   if (prevProps.data.v === nextProps.data.v) {
     return true
   }
 
   return false
-}) */
+})

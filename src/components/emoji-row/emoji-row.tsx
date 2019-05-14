@@ -6,13 +6,13 @@ type Props = {
   children: React.ReactNode
 }
 
-export const EmojiRow = /* React.memo( */({ children }: Props) => (
+export const EmojiRow = React.memo(({ children }: Props) => (
   <div
     className='emoji-row'
   >
     {children}
   </div>
-)/* , (prevProps, nextProps)  => {
+), (prevProps, nextProps)  => {
 
   const oldKeys = (prevProps.children as any).map((child) => child.key);
   const newKeys = (nextProps.children as any).map((child) => child.key);
@@ -22,4 +22,4 @@ export const EmojiRow = /* React.memo( */({ children }: Props) => (
   }
 
   return false
-}) */
+})
