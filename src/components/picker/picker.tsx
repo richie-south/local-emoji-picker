@@ -69,7 +69,7 @@ export class Picker extends React.Component<Props, State> {
     return searchEmojis(value, {
       ...emojiList,
       ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.state.frequentlyUsed} : {})
-    })
+    }, this.props.categories)
   }
 
   onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
