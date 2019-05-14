@@ -9,7 +9,9 @@ const onClick = (data) => {
 // all
 ReactDOM.render(
   <LocalEmojiPicker
+    search
     categorySelector
+    frequentlyUsed
     onClick={onClick}
     idPrefix='example-1'
   />,
@@ -19,6 +21,7 @@ ReactDOM.render(
 // only search
 ReactDOM.render(
   <LocalEmojiPicker
+    search
     onClick={onClick}
     idPrefix='example-2'
   />,
@@ -29,21 +32,50 @@ ReactDOM.render(
 ReactDOM.render(
   <LocalEmojiPicker
     categorySelector
-    search={false}
     onClick={onClick}
     idPrefix='example-3'
   />,
   document.getElementById('example-3')
 );
 
-// none
+// custome category selector
 ReactDOM.render(
   <LocalEmojiPicker
-    search={false}
+    categorySelector
+    frequentlyUsed
+    categories={[
+      {
+        category: 'symbols',
+        symbol: '💕'
+      },
+      {
+        category: 'flags',
+        symbol: '🇸🇪'
+      }
+    ]}
     onClick={onClick}
     idPrefix='example-4'
   />,
   document.getElementById('example-4')
+);
+
+// frequently used
+ReactDOM.render(
+  <LocalEmojiPicker
+    frequentlyUsed
+    onClick={onClick}
+    idPrefix='example-5'
+  />,
+  document.getElementById('example-5')
+);
+
+// none
+ReactDOM.render(
+  <LocalEmojiPicker
+    onClick={onClick}
+    idPrefix='example-6'
+  />,
+  document.getElementById('example-6')
 );
 
 
