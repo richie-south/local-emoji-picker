@@ -18,7 +18,9 @@ type Props = {
   placeHolderSearchText?: string
   search?: boolean
   categorySelector?: boolean
+  categories?: Array<Category>
   idPrefix?: string
+  frequentlyUsed?: boolean
   onClick: (value: FriendlyEmojiData) => void
 }
 
@@ -35,7 +37,7 @@ export class Picker extends React.Component<Props, State> {
   }
 
   static defaultProps = {
-    search: true,
+    categories: categories,
     idPrefix: ''
   }
 
@@ -61,13 +63,13 @@ export class Picker extends React.Component<Props, State> {
     if (value === '') {
       return {
         ...emojiList,
-        [FREQUENTLY_USED]: this.state.frequentlyUsed
+        ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.state.frequentlyUsed} : {})
       }
     }
 
     return searchEmojis(value, {
       ...emojiList,
-      [FREQUENTLY_USED]: this.state.frequentlyUsed
+      ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.state.frequentlyUsed} : {})
     })
   }
 
@@ -89,9 +91,11 @@ export class Picker extends React.Component<Props, State> {
   }
 
   onEmojiClick = (data: EmojiData) => {
-    this.setState({
-      frequentlyUsed: addToFrequentlyUsed(data)
-    })
+    if (this.props.frequentlyUsed) {
+      this.setState({
+        frequentlyUsed: addToFrequentlyUsed(data)
+      })
+    }
     this.props.onClick(toFriendlyEmojiData(data))
   }
 
@@ -105,7 +109,7 @@ export class Picker extends React.Component<Props, State> {
           height: `calc(100% - ${this.getHeight()}px)`
         }}
       >
-        {categories.map((category) => {
+        {this.props.categories.map((category) => {
           if (!Array.isArray(list[category.category]) || list[category.category].length === 0) {
             return null
           }
@@ -138,6 +142,7 @@ export class Picker extends React.Component<Props, State> {
 
     return (
       <CategorySelector
+        categories={this.props.categories}
         onClick={this.onCategoryClick}
       />
     )
