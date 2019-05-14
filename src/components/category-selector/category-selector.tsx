@@ -1,12 +1,15 @@
 import * as React from 'react'
 
-import { Category, categories } from '../../lib/categories'
+import { Category } from '../../lib/categories'
 
 import './category-selector-styles.scss'
 
-const Categories = ({ onClick }: {
+type Props = {
+  categories: Array<Category>
   onClick: (value: Category) => void
-}) => {
+}
+
+const Categories = ({ categories, onClick }: Props) => {
   return (
     <div className='categories-list'>
       {categories.map((category) => {
@@ -24,16 +27,14 @@ const Categories = ({ onClick }: {
   )
 }
 
-type Props = {
-  onClick: (value: Category) => void
-}
-
 export const CategorySelector = ({
+  categories,
   onClick
 }: Props) => {
   return (
     <div className='category-section'>
       <Categories
+        categories={categories}
         onClick={onClick}
       />
     </div>
