@@ -20,6 +20,7 @@ type Props = {
   categories?: Array<Category>
   idPrefix?: string
   frequentlyUsed?: boolean
+  categoryNames?: boolean
   onClick: (value: FriendlyEmojiData) => void
 }
 
@@ -117,6 +118,7 @@ export class Picker extends React.Component<Props, State> {
             <EmojiCategorySection
               key={category.category}
               category={category}
+              categoryNames={this.props.categoryNames}
               list={makeRows(list[category.category])}
               idPrefix={this.props.idPrefix}
               onClick={this.onEmojiClick}
