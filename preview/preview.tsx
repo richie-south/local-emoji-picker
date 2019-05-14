@@ -38,11 +38,10 @@ ReactDOM.render(
   document.getElementById('example-3')
 );
 
-// custome category selector
+// custom category selector
 ReactDOM.render(
   <LocalEmojiPicker
     categorySelector
-    frequentlyUsed
     categories={[
       {
         category: 'symbols',
