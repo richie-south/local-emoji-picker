@@ -1,5 +1,4 @@
 import * as React from 'react'
-import debounce from 'lodash.debounce'
 
 import { EmojiData, FriendlyEmojiData } from '../../types'
 import { emojiList } from '../../lib/emoji-list'
@@ -41,11 +40,11 @@ export class Picker extends React.Component<Props, State> {
     idPrefix: ''
   }
 
-  setSeachValue = debounce((searchString: string) => {
+  setSeachValue = (searchString: string) => {
     this.setState({
       searchString
     })
-  }, 50)
+  }
 
   shouldComponentUpdate (_, nextState: State) {
     if (nextState.searchString !== this.state.searchString) {
