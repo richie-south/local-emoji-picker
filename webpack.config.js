@@ -22,7 +22,9 @@ module.exports = {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
-  externals: [nodeExternals()],
+  externals: [nodeExternals({
+    whitelist: ['store']
+  })],
 
   module: {
     rules: [
