@@ -7,6 +7,7 @@ export const toFriendlyEmojiData = (data: EmojiData): FriendlyEmojiData => ({
 
 const asciiMatch = {
   "<3": '❤️',
+  "</3": '💔',
   ":*": '😗',
   ";*": '😘',
   ":)": '🙂',
