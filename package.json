@@ -1,6 +1,6 @@
 {
   "name": "local-emoji-picker",
-  "version": "0.0.14-beta.2",
+  "version": "0.0.14-beta.5",
   "description": "emoji picker for local emojis",
   "main": "./dist/index.js",
   "scripts": {
