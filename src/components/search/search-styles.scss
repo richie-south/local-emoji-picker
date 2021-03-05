@@ -1,4 +1,3 @@
-
 .local-emoji-picker {
   .search {
     padding-bottom: 6px;
@@ -9,6 +8,23 @@
       width: 100%;
       padding-left: 16px;
       padding-right: 16px;
+    }
+
+    .search-input::-ms-clear {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    .search-input::-ms-reveal {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    .search-input::-webkit-search-decoration,
+    .search-input::-webkit-search-cancel-button,
+    .search-input::-webkit-search-results-button,
+    .search-input::-webkit-search-results-decoration {
+      display: none;
     }
   }
 }
