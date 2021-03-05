@@ -15,6 +15,7 @@ export const Emoji = React.memo(({
 }: Props) => (
   <button
     className='emoji-item'
+    aria-label={data.k.join(' ')}
     onClick={() => onClick(data)}
   >
     {data.v}
