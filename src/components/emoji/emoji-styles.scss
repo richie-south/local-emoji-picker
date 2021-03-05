@@ -1,10 +1,14 @@
-
 .local-emoji-picker {
   .emoji-item {
     cursor: pointer;
     font-size: 26px;
     min-width: 33px;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
 
     &:hover {
       transform: scale(1.2);

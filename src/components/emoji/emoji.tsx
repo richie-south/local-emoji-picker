@@ -13,12 +13,12 @@ export const Emoji = React.memo(({
   data,
   onClick
 }: Props) => (
-  <div
+  <button
     className='emoji-item'
     onClick={() => onClick(data)}
   >
     {data.v}
-  </div>
+  </button>
 ), (prevProps: Props, nextProps: Props) => {
 
   if (prevProps.data.v === nextProps.data.v) {
