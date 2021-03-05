@@ -1,43 +1,50 @@
 import * as React from 'react'
 
-import { EmojiData, FriendlyEmojiData } from '../../types'
-import { emojiList } from '../../lib/emoji-list'
+import { EmojiData, FriendlyEmojiData, EmojiList } from '../../types'
 import { EmojiCategorySection } from '../emoji-category-section/emoji-category-section'
 import { categories, Category } from '../../lib/categories'
 import { makeRows } from '../../lib/make-rows'
-import { searchEmojis } from '../../lib/search'
 import { toFriendlyEmojiData } from '../../lib/converter'
-import { CategorySelector } from '../category-selector/category-selector'
-import { Search } from '../search/search'
-import { addToFrequentlyUsed, getFrequentlyUsed, FREQUENTLY_USED } from '../../lib/frequently-used'
 
 import './picker-styles.scss'
 
+const FREQUENTLY_USED = 'frequently used'
+
 type Props = {
+  emojiList: EmojiList
+
+  searchBar?: React.ComponentType<{
+    placeHolderText: string
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  }>
+  categorySelector?: React.ComponentType<{
+    categories: Array<Category>
+    onClick: (category: Category) => void
+  }>
+
   placeHolderSearchText?: string
-  search?: boolean
-  categorySelector?: boolean
+  frequentlyUsed?: Array<EmojiData>
+  categoryNames?: boolean
   categories?: Array<Category>
   idPrefix?: string
-  frequentlyUsed?: boolean
-  categoryNames?: boolean
+
+  onSearch?: (term: string, list: EmojiList, categories: Array<Category>) => EmojiList
   onClick: (value: FriendlyEmojiData) => void
 }
 
 type State = {
   searchString: string
-  frequentlyUsed: Array<EmojiData>
 }
 
 export class Picker extends React.Component<Props, State> {
 
   state: State = {
     searchString: '',
-    frequentlyUsed: getFrequentlyUsed()
   }
 
   static defaultProps = {
     categories: categories,
+    frequentlyUsed: [],
     idPrefix: ''
   }
 
@@ -47,12 +54,12 @@ export class Picker extends React.Component<Props, State> {
     })
   }
 
-  shouldComponentUpdate (_, nextState: State) {
+  shouldComponentUpdate (nextProps, nextState: State) {
     if (nextState.searchString !== this.state.searchString) {
       return true
     }
 
-    if (nextState.frequentlyUsed.length !== this.state.frequentlyUsed.length) {
+    if (nextProps.frequentlyUsed.length !== this.props.frequentlyUsed.length) {
       return true
     }
 
@@ -62,14 +69,14 @@ export class Picker extends React.Component<Props, State> {
   doSearch = (value: string) => {
     if (value === '') {
       return {
-        ...emojiList,
-        ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.state.frequentlyUsed} : {})
+        ...this.props.emojiList,
+        ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.props.frequentlyUsed} : {})
       }
     }
 
-    return searchEmojis(value, {
-      ...emojiList,
-      ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.state.frequentlyUsed} : {})
+    return this.props.onSearch(value, {
+      ...this.props.emojiList,
+      ...(this.props.frequentlyUsed ? {[FREQUENTLY_USED]: this.props.frequentlyUsed} : {})
     }, this.props.categories)
   }
 
@@ -78,10 +85,11 @@ export class Picker extends React.Component<Props, State> {
   }
 
   renderSearch () {
-    if (!this.props.search) {
+    if (!this.props.searchBar) {
       return false
     }
 
+    const Search = this.props.searchBar
     return (
       <Search
         placeHolderText={this.props.placeHolderSearchText}
@@ -91,11 +99,6 @@ export class Picker extends React.Component<Props, State> {
   }
 
   onEmojiClick = (data: EmojiData) => {
-    if (this.props.frequentlyUsed) {
-      this.setState({
-        frequentlyUsed: addToFrequentlyUsed(data)
-      })
-    }
     this.props.onClick(toFriendlyEmojiData(data))
   }
 
@@ -141,6 +144,7 @@ export class Picker extends React.Component<Props, State> {
       return null
     }
 
+    const CategorySelector = this.props.categorySelector
     return (
       <CategorySelector
         categories={this.props.categories}
@@ -150,11 +154,11 @@ export class Picker extends React.Component<Props, State> {
   }
 
   getHeight () {
-    if (this.props.search && this.props.categorySelector) {
+    if (this.props.searchBar && this.props.categorySelector) {
       return 78
     }
 
-    if (this.props.categorySelector || this.props.search) {
+    if (this.props.categorySelector || this.props.searchBar) {
       return 40
     }
 

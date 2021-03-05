@@ -1,5 +1,5 @@
-import { /* emojiList, */ EmojiList } from './emoji-list'
-import { categories, Category } from './categories'
+import { EmojiList } from '../types'
+import { Category } from './categories'
 import { EmojiData } from '../types'
 
 const matchOperatorsRegex = /[|\\{}()[\]^$+*?.-]/g

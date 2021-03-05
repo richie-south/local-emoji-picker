@@ -2,8 +2,7 @@ import store from 'store'
 
 import { EmojiData } from '../types'
 
-export const FREQUENTLY_USED = 'frequently used'
-const storePath = 'local-emoji-frequently-used'
+const storePath = 'local-emoji-frequently-used-b'
 
 type EmojiDataWithUsedNr = {
   used: number
@@ -30,7 +29,7 @@ export const addToFrequentlyUsed = (emojiData: EmojiData): Array<EmojiDataWithUs
 
     currentFrequentlyUsed[index] = value
     store.set(storePath, currentFrequentlyUsed)
-    return currentFrequentlyUsed
+    return currentFrequentlyUsed.sort((a, b) => b.used - a.used)
   }
 
   const newFrequentlyUsed = [
@@ -39,7 +38,7 @@ export const addToFrequentlyUsed = (emojiData: EmojiData): Array<EmojiDataWithUs
       ...emojiData,
       used: 1
     }
-  ]
+  ].sort((a, b) => b.used - a.used)
 
   store.set(storePath, newFrequentlyUsed)
   return newFrequentlyUsed
@@ -48,5 +47,5 @@ export const addToFrequentlyUsed = (emojiData: EmojiData): Array<EmojiDataWithUs
 
 export const getFrequentlyUsed = () => {
   const currentFrequentlyUsed: Array<EmojiDataWithUsedNr> = store.get(storePath , [])
-  return currentFrequentlyUsed
+  return currentFrequentlyUsed.sort((a, b) => b.used - a.used)
 }

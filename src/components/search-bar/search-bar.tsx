@@ -7,7 +7,7 @@ type Props = {
   onChange: (e :React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Search = ({
+export const SearchBar = ({
   placeHolderText = '',
   onChange
 }: Props) => (

@@ -7,10 +7,17 @@ const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   mode: 'production',
-  entry: path.resolve(__dirname, 'src/index.tsx'),
+  entry: {
+    picker: path.resolve(__dirname, 'src/components/picker/picker.tsx'),
+    frequentlyUsed: path.resolve(__dirname, 'src/lib/frequently-used.ts'),
+    searchEmojis: path.resolve(__dirname, 'src/lib/search.ts'),
+    searchBar: path.resolve(__dirname, 'src/components/search-bar/search-bar.tsx'),
+    categorySelector: path.resolve(__dirname, 'src/components/category-selector/category-selector.tsx'),
+    emojiList: path.resolve(__dirname, 'src/lib/emoji-list.json')
+  },
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'index.js',
+    filename: '[name].js',
     library: '',
     libraryTarget: 'commonjs',
   },
@@ -54,6 +61,6 @@ module.exports = {
     new MiniCSSExtractPlugin({
       filename: '[name].css'
     }),
-    new BundleAnalyzerPlugin()
+    /* new BundleAnalyzerPlugin() */
   ]
 }
