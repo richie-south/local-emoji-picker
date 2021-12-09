@@ -163,7 +163,7 @@ export class Picker extends React.Component<Props, State> {
 
   render () {
     return (
-      <div className='local-emoji-picker'>
+      <div className='local-emoji-picker' lang='en'>
         <div className='controls'>
           {this.renderCategorySelector()}
           {this.renderSearch()}
